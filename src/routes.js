@@ -6,9 +6,9 @@
 const express = require('express');
 const router = express.Router();
 
-// Test route (temporary)
-router.get('/', (req, res) => {
-  res.send('Universal-Audit-Service is running');
-});
+const { createLog } = require('./controllers/logController');
+const validateLog = require('./middleware/logValidator');
+
+router.post('/logs', validateLog, createLog);
 
 module.exports = router;
